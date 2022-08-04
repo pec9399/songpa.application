@@ -1,10 +1,10 @@
+
 module.exports = (sequelize, DataTypes) => {
     const user = sequelize.define('user', {
       uid: {
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false,
-        primaryKey: true
+        allowNull: false
       },
       name: {
         type: DataTypes.STRING,
@@ -27,14 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }, {
       tableName: 'user',
-      comment: '유저',
-      //아래는 foreign key연결 위한 것
-      /*classMethods: {
-        associate(models) {
-          user.belongsToMany(models.time, {foreignKey: 'uid'});
-        }
-      }*/
+      comment: '유저'
     });
+
+    //Foreign keys
+    user.associate = (models) => {
+      user.hasMany(models.application, {foreignKey: 'userId'});
+    }
+    
     return user;
   };
   
