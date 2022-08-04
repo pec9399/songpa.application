@@ -46,7 +46,7 @@ async function upsertUser(req, res){
         where: {
             uid: req.body.uid
         },
-        attributes: ['uid','name', 'email', 'nickname','rank', 'type']
+        attributes: ['uid','name', 'email', 'nickname']
      });
 
     }
