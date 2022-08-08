@@ -34,15 +34,16 @@ function Header() {
             to='/' onClick={()=>{}}>여름사역</RouterLink>
         </div>
         <div className="buttons">
+          <IconButton onClick={handleClick}>
+            <PersonIcon />
+          </IconButton>
           <IconButton className={''}
             onClick={()=>{}}>
             <Badge badgeContent={0} variant="dot">
               <SendIcon />
             </Badge>
           </IconButton>
-          <IconButton onClick={handleClick}>
-            <PersonIcon />
-          </IconButton>
+     
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
