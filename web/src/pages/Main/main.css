@@ -1,0 +1,9 @@
+#MainContainer{
+    width: 60vw;
+    margin:auto;
+    margin-top:40px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}

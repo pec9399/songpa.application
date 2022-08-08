@@ -1,5 +1,100 @@
 header {
-    width: 100%;
+    width: 1280px;
     height: 10vh;
-    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin:auto;
+}
+
+header > div > a > .banner {
+    height: 70px;
+    padding: 10px;
+}
+
+header .buttons{
+    width: 305px;
+}
+
+@media only screen and (min-width: 641px) {
+
+    header button{
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #B9D1BE !important;
+        border-radius: 8px !important;
+        margin-right:10px !important;
+    }
+
+    header .navigation a{
+        width: 100px;
+        margin: 30px;
+        font-family: "Roboto";
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    header .enabled{
+        color: #10902C;
+        border-bottom: 3px solid #10902C;
+    }
+
+    header .enabled2{
+      color: #10902C;
+    }
+
+    header #BottomNavigationContainer{
+      display: none;
+    }
+
+    #root{
+      padding-bottom:10px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+  #root{
+    padding-bottom:50px;
+  }
+
+  header .enabled2{
+    color: #10902C;
+  }
+
+  header #BottomNavigationContainer{
+    display:block;
+    width:100%;
+  }
+
+  header #BottomNavigationContainer button{
+    padding: 0;
+    min-width:0;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  header .enabled{
+    color: #10902C; 
+  }
+
+  header .enabled span{
+    color: #10902C; 
+  }
+
+  header .enabled svg{
+    color: #10902C; 
+  }
+
+  header .logo img{
+    display:none;
+  }
+  header .navigation{
+    display:none;
+  }
+ 
 }
