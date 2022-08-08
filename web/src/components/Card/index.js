@@ -5,7 +5,7 @@ import './card.css';
 function Card() {
   return (
     <article class="card">
-        <a>
+        <a href="/">
             <span>2022.08.20</span>
             <div class="image">
                 <img src="images/poster.jpg"/>
