@@ -1,16 +1,24 @@
-import React, {useState} from 'react';
-import {Link as RouterLink} from 'react-router-dom';
-import SendIcon from '@mui/icons-material/Send';
+import React, {useState, useEffect} from 'react';
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
+import {useSelector, useDispatch} from 'react-redux';
+import {useUser} from '../../hooks/user';
 import './header.css';
 
 function Header() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
+  const {userState, logout} = useUser();
   const open = Boolean(anchorEl);
+
+  useEffect(()=>{
+    if(userState.message === 'logout')
+      window.location.href = '/';
+  }, [userState.message]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,30 +28,31 @@ function Header() {
     setAnchorEl(null);
   };
 
+  const loginLogoutButton = () => {
+    if (userState.session && userState.session.uid){
+      return  <MenuItem onClick={()=>{logout()}}>로그아웃</MenuItem>
+    } else{
+      return <MenuItem onClick={()=>{navigate('/login')}}>로그인 (관리자)</MenuItem>
+    }
+  }
+
   return (
     <header>
-        <div class="bannerContainer">
-            <a href="/">
-              <img alt="banner" class="banner" src="images/banner.jpg"/>
+        <div className="bannerContainer">
+            <a onClick={()=>{navigate('/')}}>
+              <img alt="banner" className="banner" src="images/banner.jpg"/>
             </a>
         </div>
         <div className="navigation">
           <RouterLink className={'board enabled'}
             to='/' onClick={()=>{}}>생각하는 신앙</RouterLink>
-          <RouterLink className={''}
+          <RouterLink className={'disabled'}
             to='/' onClick={()=>{}}>여름사역</RouterLink>
         </div>
         <div className="buttons">
           <IconButton onClick={handleClick}>
             <PersonIcon />
           </IconButton>
-          <IconButton className={''}
-            onClick={()=>{}}>
-            <Badge badgeContent={0} variant="dot">
-              <SendIcon />
-            </Badge>
-          </IconButton>
-     
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -53,8 +62,7 @@ function Header() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={()=>{}}>내 정보</MenuItem>
-            <MenuItem onClick={()=>{}}>로그아웃</MenuItem>
+            {loginLogoutButton()}
           </Menu>
         </div>
     </header>

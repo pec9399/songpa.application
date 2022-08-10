@@ -4,22 +4,22 @@ import './card.css';
 
 function Card() {
   return (
-    <article class="card">
+    <article className="card">
         <a href="/">
             <span>2022.08.20</span>
-            <div class="image">
+            <div className="image">
                 <img src="images/poster.jpg"/>
-                <div class="status finished">신청완료</div>
+                <div className="status finished">신청완료</div>
             </div>
-            <div class="info">
-                <div class="title">
+            <div className="info">
+                <div className="title">
                     그을린 Incendies 
                 </div>
-                <div class="openInfo finishedBorder">
-                    <div class="date">
+                <div className="openInfo finishedBorder">
+                    <div className="date">
                         2022. 08. 13~
                     </div>
-                    <div class="">
+                    <div className="">
                         4/5
                     </div>
                 </div>

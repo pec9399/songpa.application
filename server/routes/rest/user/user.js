@@ -4,7 +4,7 @@ const sha256 = require('sha256');
 
 async function getSession(req, res){
   if(req.session.user){
-    res.status(200).send({
+    res.send({
       result: true,
       user: req.session.user
     });
@@ -51,7 +51,7 @@ async function upsertUser(req, res){
 
     }
 
-    res.status(200).send({
+    res.send({
       result: true
     });
 
@@ -68,26 +68,29 @@ async function upsertUser(req, res){
 
 async function login(req, res){
     try{
+      console.log(req.body);
         const user = await models.user.findOne({
             where: {
                 uid: req.body.uid,
                 password: sha256(req.body.password)
             },
-            attributes: ['uid','name', 'email', 'nickname','rank', 'type']
+            attributes: ['uid','name', 'email', 'nickname']
         });
 
         if(user){
             req.session.user = user; 
-            res.status(200).send({
-                result: true
+            res.send({
+                result: true,
+                session: user,
             });
         } else{
-            res.status(404).send({
-                result: false
+            res.send({
+                result: false,
+                message: '로그인에 실패하였습니다.'
             });
         }
     } catch(err){
-        //bad request
+      console.log(err);
         res.status(400).send({
           result: false,
           msg: err.toString()
@@ -106,12 +109,12 @@ async function checkID(req, res){
 
         if(user){
             //found
-            res.status(200).send({
+            res.send({
                 result: true
             });
         } else{
             //not found
-            res.status(404).send({
+            res.send({
                 result: false
             });
         }

@@ -19,6 +19,17 @@ header .buttons{
     flex-direction:row-reverse;
 }
 
+header .disabled{
+  color: currentColor;
+  cursor: default;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+header .bannerContainer a{
+ cursor:pointer;
+}
+
 @media only screen and (min-width: 641px) {
 
     header button{

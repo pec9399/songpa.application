@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 var logger = require('morgan');
 const ejs = require('ejs');
+const cors = require('cors');
 const session = require('express-session');
 const history = require('connect-history-api-fallback');
 const MySQLStore = require('express-mysql-session')(session);
@@ -13,7 +14,11 @@ const config = require('./config/config.json')[process.env.NODE_ENV || 'developm
 const viewPath = config.path;
 
 var app = express();
-
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 
