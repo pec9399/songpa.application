@@ -50,9 +50,15 @@ function Header() {
             to='/' onClick={()=>{}}>여름사역</RouterLink>
         </div>
         <div className="buttons">
+          
           <IconButton onClick={handleClick}>
             <PersonIcon />
           </IconButton>
+          {
+            userState.session && userState.session.uid ?
+            <div className="welcomeMessage">{userState.session.name}님, 환영합니다! </div> :
+            <></>
+          }
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}

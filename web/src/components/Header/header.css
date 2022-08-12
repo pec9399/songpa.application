@@ -30,6 +30,16 @@ header .bannerContainer a{
  cursor:pointer;
 }
 
+header .welcomeMessage{
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right:20px;
+}
+
 @media only screen and (min-width: 641px) {
 
     header button{

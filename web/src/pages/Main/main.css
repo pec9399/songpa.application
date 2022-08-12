@@ -7,3 +7,10 @@
     flex-wrap: wrap;
     justify-content: flex-start;
 }
+
+#MainContainer .adminSection{
+    width:1280px;
+    margin:10px;
+    display:flex;
+    flex-direction: row;
+}

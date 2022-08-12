@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
-import {useSelector, useDispatch} from 'react-redux';
-import {loginRequest} from '../../modules/User/actions';
 import {useUser} from '../../hooks/user';
 import './signin.css';
 
