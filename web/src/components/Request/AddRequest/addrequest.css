@@ -1,0 +1,49 @@
+
+#AddRequestDialog .container{
+    width: 100%;
+}
+#AddRequestDialog .buttonStyle{
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 10px;
+    font-family: 'Inter';
+    font-size: 11px;
+    font-weight: normal;
+    width: 100%;
+    height: 45px;
+    text-indent: 10px;
+}
+
+#AddRequestDialog label{
+    color: rgba(0,0,0,0.8);
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: normal;
+    margin-left:10px;
+}
+
+#AddRequestDialog .title{
+    font-family: 'Inter';
+    font-size: '12px';
+    font-weight: 600;
+    width:100%;
+    display: block;
+    margin-left: -5px;
+    margin-bottom: 10px;
+}
+
+#AddRequestDialog .submitButton{
+    background-color: #3f51b5;
+    font-family: 'Inter';
+    font-weight: bold;
+    font-size: 14px;
+    height:40px;
+}
+
+#AddRequestDialog .gridContainer{
+    margin:10px;
+}
+
+#AddRequestDialog .mainTitle{
+    display: none;
+}

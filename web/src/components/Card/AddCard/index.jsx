@@ -11,14 +11,22 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import {SubmitHandler, useForm} from 'react-hook-form';
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
 const initialDialogState = {
   title: '',
-  description: ''
+  description: '',
+  startDate: new Date(),
+  openDate: new Date(),
 };
 
-const AddBoard = ({closeHandler, open}) => {
+const AddCard = ({closeHandler, open}) => {
   const {register, getValues, handleSubmit, reset} = useForm();
+  const [startDate, setStartDate] = useState(new Date());
+  const [openDate, setOpenDate] = useState(new Date());
 
   useEffect(() => {
     if (open == true) {
@@ -76,7 +84,7 @@ const AddBoard = ({closeHandler, open}) => {
                   <label>설명</label>
                   <input className="buttonStyle"
                     {...register('description')}
-                    placeholder="설명을 입력하세요 (optional)"
+                    placeholder="(optional) 설명을 입력하세요"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -87,18 +95,29 @@ const AddBoard = ({closeHandler, open}) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <label>모임 날짜</label>
-                  <input className="buttonStyle"
-                    {...register('startTime')}
-                    placeholder="모임 날짜"
-                  />
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <MobileDateTimePicker
+                    label="모임 날짜 / 시간"
+                    value={startDate}
+                    onChange={(newValue) => {
+                        setStartDate(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                  
                 </Grid>
                 <Grid item xs={12}>
-                  <label>신청 가능 시간</label>
-                  <input className="buttonStyle"
-                    {...register('openTime')}
-                    placeholder="신청 시작 시간"
-                  />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <MobileDateTimePicker
+                    label="신청 시작 시간"
+                    value={openDate}
+                    onChange={(newValue) => {
+                        setOpenDate(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
                 </Grid>
               </Grid>
               <Button
@@ -119,4 +138,4 @@ const AddBoard = ({closeHandler, open}) => {
 };
 
 
-export default AddBoard;
+export default AddCard;

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       description: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         comment: '설명'
       },
       maxNum: {
@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
         comment: '신청 받는 시간'
+      },
+      poster: {
+        type: DataTypes.STRING,
+        allowNull:true,
+        comment: '포스터 위치'
       }
     }, {
       tableName: 'application',

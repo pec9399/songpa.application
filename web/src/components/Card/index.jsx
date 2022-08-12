@@ -3,9 +3,14 @@ import React from 'react';
 import './card.css';
 
 function Card() {
+  const [openDialog, setOpenDialog] = useState(false);
+  const closeDialog = () => {
+    setOpenDialog(false);
+  };
+  
   return (
     <article className="card">
-        <a href="/">
+        <a onClick={()=>{}}>
             <span>2022.08.20</span>
             <div className="image">
                 <img src="images/poster.jpg"/>
