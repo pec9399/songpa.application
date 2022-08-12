@@ -30,7 +30,9 @@ export default function SignIn() {
   return (
     <div id="SignInContainer">
       <div id="SignInWrap">
-        <div className="logo">
+        <div className="logo" onClick={() => {
+          window.location.href = '/';
+        }}>
           <img alt="logo" src="images/banner.jpg"/>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
