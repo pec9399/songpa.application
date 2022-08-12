@@ -130,15 +130,15 @@ async function checkID(req, res){
 
 async function logout(req, res){
     try{
-        req.session.user = null;
-        await req.session.destroy(()=>{ 
-            req.session;
+      if(req.session.user){
+        req.session.destroy((err)=>{ 
         });
+      }
         res.status(200).send({
             result: true
         });
     } catch(err){
-        res.status(400).send({
+        res.status(200).send({
             result: false,
             msg: err.toString()
         });

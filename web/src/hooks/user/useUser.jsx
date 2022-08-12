@@ -2,7 +2,8 @@ import {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
     loginAsync,
-    logoutAsync
+    logoutAsync,
+    checkSessionAsync,
 } from '../../modules/User/actions';
 
 function useUser(){
@@ -14,13 +15,18 @@ function useUser(){
     }, [dispatch]);
     
     const logout = useCallback((data) => {
-        dispatch(logoutAsync.request());
-      }, [dispatch]);
+      dispatch(logoutAsync.request());
+    }, [dispatch]);
+
+    const getSession = useCallback((data) => {
+      dispatch(checkSessionAsync.request());
+    }, [dispatch])
       
     return {
         userState,
         login,
-        logout
+        logout,
+        getSession,
     };
 }
 

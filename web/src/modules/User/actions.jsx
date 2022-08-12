@@ -19,3 +19,13 @@ export const logoutAsync = {
     success: createAction(LOGOUT_USER_SUCCESS),
     failure: createAction(LOGOUT_USER_FAIL),
 }
+
+export const CHECK_SESSION_REQUEST = 'USER/CHECK_SESSION_REQUEST';
+export const CHECK_SESSION_SUCCESS = 'USER/CHECK_SESSION_SUCCESS';
+export const CHECK_SESSION_FAILURE ='USER/CHECK_SESSION_FAILURE';
+
+export const checkSessionAsync = {
+    request: createAction(CHECK_SESSION_REQUEST),
+    success: createAction(CHECK_SESSION_SUCCESS),
+    failure: createAction(CHECK_SESSION_FAILURE),
+}

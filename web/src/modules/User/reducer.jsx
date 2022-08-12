@@ -2,6 +2,7 @@ import {handleActions} from 'redux-actions';
 import {
     loginAsync,
     logoutAsync,
+    checkSessionAsync,
 } from './actions'
 
 const initialState = {
@@ -29,6 +30,19 @@ const UserReducer = handleActions({
         ...state,
         login: false,
         message: action.payload.message,
+    }),
+    [checkSessionAsync.request]: (state, action) => ({
+        ...state,
+    }),
+    [checkSessionAsync.success]: (state, action) => ({
+        ...state,
+        login: true,
+        session: action.payload.user
+    }),
+    [checkSessionAsync.failure]: (state, action) => ({
+        ...state,
+        login: false,
+        session: undefined
     }),
     [logoutAsync.request]: (state, action) => ({
         ...state,
