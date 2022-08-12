@@ -27,3 +27,17 @@ export async function logoutApi() {
     };
   }
 }
+
+export async function checkSessionApi(){
+  try {
+    const user = await axios.get(`${SERVER}/user/session`,
+        {withCredentials: true});
+    return user.data;
+  } catch (err) {
+    console.log(err);
+    return {
+      login: false,
+      message: err
+    };
+  }
+}

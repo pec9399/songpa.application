@@ -15,7 +15,7 @@ const viewPath = config.path;
 
 var app = express();
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: true,
   credentials: true,
 };
 app.use(cors(corsOptions));
@@ -48,9 +48,11 @@ app.use(session({
   secret: 'Songpa.Church',
   proxy: true,
   store: sessionStore,
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 3 * 60 * 60 * 1000 } // 세션 유지 3시간
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    maxAge: 3 * 60 * 60 * 1000,
+   }
 }));
 
 
