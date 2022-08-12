@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Footer from '../components/Footer';
-import Main from '../pages/Main';
-import SignIn from '../pages/SignIn';
+import Main from './Main';
+import SignIn from './SignIn';
 import './App.css';
 
 import {
