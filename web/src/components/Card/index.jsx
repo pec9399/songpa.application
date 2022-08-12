@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, {useState} from 'react';
+import AddRequest from '../Request/AddRequest'
 import './card.css';
 
 function Card() {
@@ -9,8 +9,9 @@ function Card() {
   };
   
   return (
+    <>
     <article className="card">
-        <a onClick={()=>{}}>
+        <a onClick={()=>{setOpenDialog(true)}}>
             <span>2022.08.20</span>
             <div className="image">
                 <img src="images/poster.jpg"/>
@@ -31,6 +32,11 @@ function Card() {
             </div>
         </a>
     </article>
+    <AddRequest
+      open={openDialog}
+      closeHandler={() => setOpenDialog(false)}
+    />
+    </>
   );
 }
 
