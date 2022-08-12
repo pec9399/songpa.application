@@ -6,6 +6,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin:auto;
+    box-sizing:content-box;
 }
 
 header > div > a > .banner {
@@ -39,6 +40,7 @@ header .welcomeMessage{
   align-items: center;
   margin-right:20px;
 }
+
 
 @media only screen and (min-width: 641px) {
 

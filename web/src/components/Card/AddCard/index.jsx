@@ -15,7 +15,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-
+import {ko} from 'date-fns/esm/locale';
 const initialDialogState = {
   title: '',
   description: '',
@@ -23,10 +23,34 @@ const initialDialogState = {
   openDate: new Date(),
 };
 
+const getSecondSaturday = () => {
+  const date = new Date();
+  let cnt = 0;
+  date.setDate(1);
+  date.setHours(17);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  for(let i = 0; i < 30; i++){
+    if(date.getDay() == 6){
+      cnt++;
+    }
+    date.setDate(date.getDate()+1);
+    
+    if(cnt == 2){
+      break;
+    }
+  }
+  return date;
+}
+
 const AddCard = ({closeHandler, open}) => {
   const {register, getValues, handleSubmit, reset} = useForm();
-  const [startDate, setStartDate] = useState(new Date());
-  const [openDate, setOpenDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(getSecondSaturday());
+  const today = new Date();
+  today.setHours(0);
+  today.setMinutes(0);
+  today.setSeconds(0);
+  const [openDate, setOpenDate] = useState(today);
 
   useEffect(() => {
     if (open == true) {
@@ -99,6 +123,7 @@ const AddCard = ({closeHandler, open}) => {
                     <MobileDateTimePicker
                     label="모임 날짜 / 시간"
                     value={startDate}
+                    minDate={new Date()}
                     onChange={(newValue) => {
                         setStartDate(newValue);
                     }}
@@ -112,6 +137,8 @@ const AddCard = ({closeHandler, open}) => {
                     <MobileDateTimePicker
                     label="신청 시작 시간"
                     value={openDate}
+                    locale={ko}
+                    minDate={new Date()}
                     onChange={(newValue) => {
                         setOpenDate(newValue);
                     }}
