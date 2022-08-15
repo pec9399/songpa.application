@@ -1,5 +1,6 @@
 const models = require('../../../models');
 const sha256 = require('sha256');
+
 async function getApplications(req, res) {
     try {
         const resp = await models.application.findAll({

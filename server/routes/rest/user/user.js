@@ -127,23 +127,22 @@ async function checkID(req, res) {
 }
 
 
-async function logout(req, res){
-    try{
-      if(req.session.user){
-        req.session.destroy((err)=>{ 
-        });
-      }
-        res.status(200).send({
-            result: true
-        });
-    } catch(err){
-        res.status(200).send({
-            result: false,
-            msg: err.toString()
-        });
+async function logout(req, res) {
+  try {
+    if (req.session.user) {
+      req.session.destroy((err) => {
+      });
     }
+    res.status(200).send({
+      result: true
+    });
+  } catch (err) {
+    res.status(200).send({
+      result: false,
+      msg: err.toString()
+    });
+  }
 };
-
 
 module.exports = {
   getSession,
