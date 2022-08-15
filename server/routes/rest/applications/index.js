@@ -4,11 +4,13 @@ const router = express.Router();
 const {
     getApplications,
     getApplication,
-    upsertApp
+    upsertApp,
+    deleteApp
 } = require('./application');
 
 router.get('/:id', getApplication);
 router.get('/', getApplications);
 router.post('/', upsertApp);
+router.delete('/:id', deleteApp);
 
 module.exports = router;

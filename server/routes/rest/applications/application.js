@@ -76,8 +76,30 @@ async function upsertApp(req, res) {
         });
     }
 }
+
+async function deleteApp(req, res) {
+    try {
+        await models.application.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+
+        res.send({ result: true });
+    }
+    catch (err) {
+        //bad request
+        console.log(err);
+        res.status(400).send({
+            result: false,
+            msg: err.toString()
+        });
+    }
+}
+
 module.exports = {
     getApplications,
     getApplication,
-    upsertApp
+    upsertApp,
+    deleteApp
 };
