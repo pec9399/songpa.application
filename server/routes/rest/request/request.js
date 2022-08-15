@@ -37,7 +37,7 @@ async function reqApp(req, res) {
 
 async function reqDelete(req, res) {
     try {
-        await models.request.destroy({
+        const deleteId = await models.request.destroy({
             where: {
                 id: req.params.id
             }
