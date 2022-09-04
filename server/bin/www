@@ -5,14 +5,15 @@ process.env.proxy = false;
 const app = require('../app');
 const debug = require('debug');
 const config = require('../config/config.json')[process.env.NODE_ENV || 'development'];
+const fs = require('fs');
 
 app.set('port', config.port || 3000);
 app.set('env', process.env.NODE_ENV);
 const port = app.get('port');
 const server = app.listen(app.get('port'), () => {
-  console.log('Server Listening on ' + server.address().port);
+  const dir = './upload/';
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 });
-
 
 /**
  * Event listener for HTTP server "error" event.
@@ -27,7 +28,7 @@ function onError(error) {
     `Pipe ${port}` :
     `Port ${port}`;
 
-    // handle specific listen errors with friendly messages
+  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       console.error(`${bind} requires elevated privileges`);
