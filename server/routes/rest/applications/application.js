@@ -1,5 +1,6 @@
 const models = require('../../../models');
 const sha256 = require('sha256');
+const app = require('../../../app');
 
 async function getApplications(req, res) {
     try {
@@ -61,14 +62,19 @@ async function getApplication(req, res) {
 }
 async function upsertApp(req, res) {
     try {
-        req.body.userId = req.session.user.id;
-        await models.application.upsert(
-            req.body
-        );
-        res.send({ result: true });
+        //req.body.userId = req.session.user.id;
+        await models.application.upsert({
+            title: 'test',
+            startTime: 2,
+            openTime: 2,
+            maxNum: 2,
+            userId: 1,
+            poster: req.file.filename
+        })
+        res.send({ result: req.file });
     }
     catch (err) {
-        //bad request
+        // bad request
         console.log(err);
         res.status(400).send({
             result: false,
