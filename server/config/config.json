@@ -18,7 +18,7 @@
         },
         "path": {
             "index": "/../dist_dev",
-            "upload_path": "webdata/uploads/"
+            "upload_path": "upload/"
         }
     },
     "production": {
@@ -37,7 +37,7 @@
         },
         "path": {
             "index": "/../dist",
-            "upload_path": "webdata/uploads"
+            "upload_path": "upload"
         }
     }
 }
