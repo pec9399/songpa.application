@@ -4,6 +4,7 @@ node_modules/
 dist_dev
 dist
 uploads
+upload
 webdata_tmp
 .idea
 .vscode

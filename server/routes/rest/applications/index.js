@@ -4,9 +4,10 @@ const multer = require('multer');
 const randomstring = require("randomstring"); //내가 추가
 const path = require('path');
 const db = require('../../../models');
+const config = require('../../../config/config.json')[process.env.NODE_ENV || 'development'];
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "../../../upload");
+        cb(null, config.path.upload_path);
     },
     filename: (req, file, cb) => {
         const fileName = randomstring.generate(25);
