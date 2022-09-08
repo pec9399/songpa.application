@@ -1,44 +1,48 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useMain } from '../../hooks/main';
 import AddRequest from '../Request/AddRequest'
 import './card.css';
 
 function Card() {
+  const { mainState } = useMain();
   const [openDialog, setOpenDialog] = useState(false);
   const closeDialog = () => {
     setOpenDialog(false);
   };
-  
-  return (
-    <>
-    <article className="card">
-        <a onClick={()=>{setOpenDialog(true)}}>
-            <span>2022.08.20</span>
+
+
+  return mainState.applications.map((app, index) => {
+    return (
+      <>
+        <article className="card">
+          <a onClick={() => { setOpenDialog(true) }}>
+            <span>{app.startTime}</span>
             <div className="image">
-                <img src="images/poster.jpg"/>
-                <div className="status finished">신청완료</div>
+              <img src={require('../../../../server/upload/' + app.poster)} />
+              <div className="status open">신청 중</div>
             </div>
             <div className="info">
-                <div className="title">
-                    그을린 Incendies 
+              <div className="title">
+                {app.title}
+              </div>
+              <div className="openInfo finishedBorder">
+                <div className="date">
+                  {app.openTime}~
                 </div>
-                <div className="openInfo finishedBorder">
-                    <div className="date">
-                        2022. 08. 13~
-                    </div>
-                    <div className="">
-                        4/5
-                    </div>
+                <div className="">
+                  4/{app.maxNum}
                 </div>
+              </div>
             </div>
-        </a>
-    </article>
-    <AddRequest
-      open={openDialog}
-      closeHandler={() => setOpenDialog(false)}
-    />
-    </>
-  );
-}
-
+          </a>
+        </article>
+        <AddRequest
+          open={openDialog}
+          closeHandler={() => setOpenDialog(false)}
+        />
+      </>
+    );
+  });
+};
 
 export default Card;

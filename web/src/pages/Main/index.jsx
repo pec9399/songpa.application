@@ -17,17 +17,6 @@ function Main() {
     setOpenDialog(false);
   };
 
-  const renderApplications = () => {
-
-    return mainState.applications.map((app, index) => {
-      return (
-        <div>
-          {app.title}
-        </div>
-      )
-    });
-  };
-
   useEffect(() => {
     getSession();
     getApps();
@@ -53,7 +42,7 @@ function Main() {
 
         }
 
-        {renderApplications()}
+        <Card />
 
       </div>
       <AddCard
