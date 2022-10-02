@@ -1,2 +1,3 @@
 export * from './paths';
-export const SERVER = 'http://localhost:81/rest';
+export const SERVER = 'http://localhost:8080/rest';
+export const UPLOAD = 'http://localhost:8080/'

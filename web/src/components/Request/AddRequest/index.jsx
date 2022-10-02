@@ -20,23 +20,25 @@ const initialDialogState = {
 
 const AddRequest = ({ closeHandler, open, id }) => {
   const { register, getValues, handleSubmit, reset } = useForm();
-  const appId = id;
-
+  
   useEffect(() => {
     if (open == true) {
       reset(initialDialogState);
     }
   }, [open]);
 
+
+
+  useEffect(() => {
+    console.log(id);
+  },[open])
+
   const onSubmit = (data, e) => {
     if (e) {
       e.preventDefault();
     }
+    alert(id);
 
-    // DB에 값 전달
-    axios
-      .post('http://localhost:81/rest/request/' + appId, data);
-    alert(appId); //무조건 132 나옴
     closeHandler();
   };
 

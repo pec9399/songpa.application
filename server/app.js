@@ -35,6 +35,8 @@ if(process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, viewPath.index)));
 }
 
+app.use('/', express.static(path.join(__dirname, config.path.upload_path)));
+
 const sessionStore = new MySQLStore({
   host: config.db.host,
   port: config.db.port,
