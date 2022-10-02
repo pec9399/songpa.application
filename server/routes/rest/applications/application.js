@@ -63,14 +63,14 @@ async function getApplication(req, res) {
 async function upsertApp(req, res) {
     try {
         //req.body.userId = req.session.user.id;
-        /*await models.application.upsert({
-            title: 'test',
-            startTime: 2,
-            openTime: 2,
-            maxNum: 2,
-            userId: 1,
+        await models.application.upsert({
+            title: req.body.title,
+            startTime: req.body.startTime,
+            openTime: req.body.openTime,
+            maxNum: req.body.maxNum,
+            userId: req.body.userId,
             poster: req.file.filename
-        })*/
+        })
         console.log(req.file);
         res.send({ result: req.file });
     }
