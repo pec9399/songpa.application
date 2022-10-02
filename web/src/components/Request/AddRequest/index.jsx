@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,14 +10,17 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import {SubmitHandler, useForm} from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import axios from 'axios';
+
 const initialDialogState = {
   name: '',
   year: '',
 };
 
-const AddRequest = ({closeHandler, open}) => {
-  const {register, getValues, handleSubmit, reset} = useForm();
+const AddRequest = ({ closeHandler, open, id }) => {
+  const { register, getValues, handleSubmit, reset } = useForm();
+  const appId = id;
 
   useEffect(() => {
     if (open == true) {
@@ -29,7 +32,11 @@ const AddRequest = ({closeHandler, open}) => {
     if (e) {
       e.preventDefault();
     }
-    
+
+    // DB에 값 전달
+    axios
+      .post('http://localhost:81/rest/request/' + appId, data);
+    alert(appId); //무조건 132 나옴
     closeHandler();
   };
 
@@ -61,13 +68,13 @@ const AddRequest = ({closeHandler, open}) => {
             }}
           >
             <Box component="form" noValidate className="box"
-              onSubmit={handleSubmit(onSubmit)} sx={{mt: 3}}
+              onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}
             >
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <label>이름</label>
                   <input className="buttonStyle"
-                    {...register('name', {required: true})}
+                    {...register('name', { required: true })}
                     placeholder="이름을 입력하세요"
                   />
                 </Grid>
@@ -84,9 +91,9 @@ const AddRequest = ({closeHandler, open}) => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{mt: 3, mb: 2}}
+                sx={{ mt: 3, mb: 2 }}
               >
-                  신청하기
+                신청하기
               </Button>
             </Box>
           </Box>
