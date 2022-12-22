@@ -33,10 +33,12 @@ function Main() {
         {
           userState.session && userState.session.uid ?
             <div className="adminSection">
-              <Fab color="primary" variant="extended" onClick={() => setOpenDialog(true)}>
-                <AddIcon sx={{ mr: 1 }} />
-                추가
-              </Fab>
+              <div className="addButton">
+                <Fab color="primary" variant="extended" onClick={() => setOpenDialog(true)}>
+                  <AddIcon sx={{ mr: 1 }} />
+                  추가
+                </Fab>
+              </div>
             </div>
             : <></>
 

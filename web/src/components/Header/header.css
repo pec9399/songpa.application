@@ -1,24 +1,10 @@
-header {
-    width: 1280px;
-    height: 10vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin:auto;
-    box-sizing:content-box;
-}
 
 header > div > a > .banner {
     height: 70px;
     padding: 10px;
 }
 
-header .buttons{
-    width: 305px;
-    display:flex;
-    flex-direction:row-reverse;
-}
+
 
 header .disabled{
   color: currentColor;
@@ -29,6 +15,10 @@ header .disabled{
 
 header .bannerContainer a{
  cursor:pointer;
+}
+
+header .bannerContainer{
+  width:300px;
 }
 
 header .welcomeMessage{
@@ -42,8 +32,17 @@ header .welcomeMessage{
 }
 
 
-@media only screen and (min-width: 641px) {
-
+  header {
+    width: 1280px;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin:auto;
+    box-sizing:content-box;
+    padding-top:20px;
+}
     header button{
         justify-content: center;
         align-items: center;
@@ -51,6 +50,12 @@ header .welcomeMessage{
         border-radius: 8px !important;
         margin-right:10px !important;
     }
+
+    header .buttons{
+      width: 305px;
+      display:flex;
+      flex-direction:row-reverse;
+  }
 
     header .navigation a{
         width: 100px;
@@ -69,56 +74,28 @@ header .welcomeMessage{
       color: #10902C;
     }
 
-    header #BottomNavigationContainer{
-      display: none;
-    }
-
     #root{
       padding-bottom:10px;
     }
-}
 
-@media only screen and (max-width: 640px) {
-  #root{
-    padding-bottom:50px;
-  }
 
-  header .enabled2{
-    color: #10902C;
+@media only screen and (max-width: 899px){
+
+  header{
+    width:100vw;
+    justify-content: center;
+    padding-top:30px;
   }
 
   header #BottomNavigationContainer{
-    display:block;
-    width:100%;
+    display: none;
   }
 
-  header #BottomNavigationContainer button{
-    padding: 0;
-    min-width:0;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 9px;
-    letter-spacing: -0.02em;
-    color: rgba(0, 0, 0, 0.4);
-  }
-
-  header .enabled{
-    color: #10902C; 
-  }
-
-  header .enabled span{
-    color: #10902C; 
-  }
-
-  header .enabled svg{
-    color: #10902C; 
-  }
-
-  header .logo img{
+  header .navigation{
     display:none;
   }
-  header .navigation{
+
+  header .buttons{
     display:none;
   }
  
