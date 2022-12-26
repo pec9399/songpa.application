@@ -69,7 +69,7 @@ async function upsertApp(req, res) {
             openTime: req.body.openTime,
             maxNum: req.body.maxNum,
             userId: req.body.userId,
-            poster: '/rest/upload/'+req.file.filename
+            poster: req.file.filename
         })
         console.log(req.file);
         res.send({ result: req.file });
