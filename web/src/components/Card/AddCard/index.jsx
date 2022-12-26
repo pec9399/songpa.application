@@ -15,6 +15,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import {useAdmin} from '../../../hooks/admin';
 import {ko} from 'date-fns/esm/locale';
 const initialDialogState = {
   title: '',
@@ -44,6 +45,9 @@ const getSecondSaturday = () => {
 }
 
 const AddCard = ({closeHandler, open}) => {
+
+  const {addCard, adminState} = useAdmin();
+
   const {register, getValues, handleSubmit, reset} = useForm();
   const [startDate, setStartDate] = useState(getSecondSaturday());
   const today = new Date();
@@ -51,6 +55,17 @@ const AddCard = ({closeHandler, open}) => {
   today.setMinutes(0);
   today.setSeconds(0);
   const [openDate, setOpenDate] = useState(today);
+
+  const [fileImage, setFileImage] = useState("");
+  const saveFileImage = (event) =>{
+    setFileImage(URL.createObjectURL(event.target.files[0]));
+  };
+
+  const deleteFileImage = () =>{
+    URL.revokeObjectURL(fileImage);
+    setFileImage("");
+  };
+
 
   useEffect(() => {
     if (open == true) {
@@ -62,6 +77,18 @@ const AddCard = ({closeHandler, open}) => {
     if (e) {
       e.preventDefault();
     }
+
+    console.log(data);
+    console.log(e);
+    
+    addCard({
+      title: data.title,
+      description: data.description,
+      maxNum: Number(data.maxNum),
+      startTime: data.startDate,
+      openTime: data.openDate,
+      file: data.file
+    });
     
     closeHandler();
   };
@@ -112,6 +139,45 @@ const AddCard = ({closeHandler, open}) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  <label>포스터 이미지</label><br/><br/>
+               
+                      <input
+                        className="buttonStyle"
+                        name="imggeUpload"
+                        type="file"
+                        {...register('file')}
+                        style={{
+                          border: 'none',
+                          backgroundColor: 'transparent',
+                        }}
+                        accept="image/*"
+                        onChange={saveFileImage} />
+                     <div style={{
+                    display: 'flex',
+                    background: 'none'
+                  }}>
+                  
+                    <div style={{
+                      width:"260px"
+                    }}>
+                      {fileImage && ( <img alt="sample" src={fileImage}
+                                          style={{ margin: "auto", width: "300px" }} /> 
+                                          
+                                          ) }
+                    </div>
+                    <div>
+                    {fileImage && (<button style={{
+                        width: "30px",
+                        height: "30px",
+                        marginLeft: "10px",
+                        cursor: "pointer", }}
+                        onClick={() => deleteFileImage()}>X</button>)}
+                    </div>
+                  </div>
+     
+                
+                </Grid>
+                <Grid item xs={12}>
                   <label>최대 신청 가능 인원 수</label>
                   <input className="buttonStyle"
                     {...register('maxNum')}
@@ -123,7 +189,6 @@ const AddCard = ({closeHandler, open}) => {
                     <MobileDateTimePicker
                     label="모임 날짜 / 시간"
                     value={startDate}
-                    minDate={new Date()}
                     onChange={(newValue) => {
                         setStartDate(newValue);
                     }}
@@ -138,7 +203,6 @@ const AddCard = ({closeHandler, open}) => {
                     label="신청 시작 시간"
                     value={openDate}
                     locale={ko}
-                    minDate={new Date()}
                     onChange={(newValue) => {
                         setOpenDate(newValue);
                     }}
