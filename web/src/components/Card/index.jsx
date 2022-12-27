@@ -37,11 +37,11 @@ function Card() {
                 <img src={UPLOAD+ app.poster} />
                 <div className=
                   {
-                    app.startTime <= time ? "status finished" : app.requestCount / app.maxNum < 1 ? "status open" : "status closed"
+                    new Date(app.startTime) <= time ? "status finished" : app.requestCount / app.maxNum < 1 ? "status open" : "status closed"
                   }
                 >
                   {
-                    app.startTime <= time ? "사역 종료" : app.requestCount / app.maxNum < 1 ? "신청 중" : "신청 마감"
+                    new Date(app.startTime) <= time ? "사역 종료" : app.requestCount / app.maxNum < 1 ? "신청 중" : "신청 마감"
                   }
                 </div>
               </div>
@@ -50,7 +50,7 @@ function Card() {
                   {app.title}
                 </div>
                 <div className={
-                  app.startTime <= time ? "openInfo finishedBorder" : app.requestCount / app.maxNum < 1 ? "openInfo openBorder" : "openInfo closedBorder"
+                  new Date(app.startTime) <= time ? "openInfo finishedBorder" : app.requestCount / app.maxNum < 1 ? "openInfo openBorder" : "openInfo closedBorder"
                 }>
                   <div className="date">
                     {start_date} {start_time}
