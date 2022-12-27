@@ -1,7 +1,7 @@
 const models = require('../../../models');
 const sha256 = require('sha256');
 const app = require('../../../app');
-
+s
 async function getApplications(req, res) {
     try {
         const resp = await models.application.findAll({
@@ -9,6 +9,9 @@ async function getApplications(req, res) {
                 include: [[models.Sequelize.fn("COUNT", models.Sequelize.col("requests.id")), "requestCount"]]
             },
             group: ['application.id'],
+            order: [
+                ['startTime', 'DESC']
+            ],
             include: [
                 {
                     model: models.user,
