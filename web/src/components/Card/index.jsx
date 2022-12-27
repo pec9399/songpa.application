@@ -32,7 +32,9 @@ function Card() {
         <>
           <article className="card">
             <a onClick={() => { setAppId(app.id);setOpenDialog(true); }}>
-              <span>{open_date} {open_hour}시 {open_minute}분 이후 신청</span>
+              {
+                //<span>{open_date} {open_hour}시 {open_minute}분 이후 신청</span>
+              }
               <div className="image">
                 <img src={UPLOAD+ app.poster} />
                 <div className=
