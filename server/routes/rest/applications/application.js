@@ -62,6 +62,7 @@ async function getApplication(req, res) {
 }
 async function upsertApp(req, res) {
     try {
+        console.log(req.body);
         req.body.userId = req.session.user.id;
         await models.application.upsert({
             title: req.body.title,

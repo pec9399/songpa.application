@@ -85,8 +85,8 @@ const AddCard = ({closeHandler, open}) => {
       title: data.title,
       description: data.description,
       maxNum: Number(data.maxNum),
-      startTime: data.startDate,
-      openTime: data.openDate,
+      startTime: startDate,
+      openTime: openDate,
       file: data.file
     });
     
@@ -189,6 +189,7 @@ const AddCard = ({closeHandler, open}) => {
                     <MobileDateTimePicker
                     label="모임 날짜 / 시간"
                     value={startDate}
+                    {...register('startDate')}
                     onChange={(newValue) => {
                         setStartDate(newValue);
                     }}
@@ -202,6 +203,7 @@ const AddCard = ({closeHandler, open}) => {
                     <MobileDateTimePicker
                     label="신청 시작 시간"
                     value={openDate}
+                    {...register('openDate')}
                     locale={ko}
                     onChange={(newValue) => {
                         setOpenDate(newValue);
