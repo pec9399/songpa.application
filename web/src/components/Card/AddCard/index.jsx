@@ -73,6 +73,14 @@ const AddCard = ({closeHandler, open}) => {
     }
   }, [open]);
 
+  useEffect(()=>{
+    if(adminState.message === 'addCardSuccess'){
+      window.location.reload(false);
+    } else if (adminState.message != ''){
+      alert(adminState.message);
+    }
+  },[adminState.message])
+
   const onSubmit = (data, e) => {
     if (e) {
       e.preventDefault();
