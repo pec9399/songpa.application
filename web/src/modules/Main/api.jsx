@@ -3,7 +3,7 @@ import { SERVER } from '../../constants';
 
 export async function getAppsApi() {
     try {
-        const apps = await axios.get(`${SERVER}/applications`,
+        const apps = await axios.get(`${SERVER}/applications?page=1`,
             { withCredentials: true });
         return {
             result: true,

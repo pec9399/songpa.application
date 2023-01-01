@@ -20,7 +20,7 @@ const initialDialogState = {
 
 const AddRequest = ({ closeHandler, open, id }) => {
   const { register, getValues, handleSubmit, reset } = useForm();
-  
+
   useEffect(() => {
     if (open == true) {
       reset(initialDialogState);
@@ -31,7 +31,7 @@ const AddRequest = ({ closeHandler, open, id }) => {
 
   useEffect(() => {
     console.log(id);
-  },[open])
+  }, [open])
 
   const onSubmit = (data, e) => {
     if (e) {

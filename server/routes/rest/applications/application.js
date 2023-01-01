@@ -37,6 +37,49 @@ async function getApplications(req, res) {
         });
     }
 }
+
+async function getApplications_pagination(req, res) {
+    const pageNum = req.query.page;
+    const limit = 8;
+    const offset = limit * (parseInt(pageNum) - 1);
+    try {
+        let resp = await models.application.findAll({
+            group: ['application.id'],
+            order: [
+                ['startTime', 'DESC']
+            ],
+            attributes: {
+                 include: [[models.Sequelize.fn("COUNT", models.Sequelize.col("requests.id")), "requestCount"]]
+            },
+            include: [
+                {
+                    model: models.user,
+                    attributes: {
+                        exclude: ['password']
+                    }
+                },
+                {
+                    model: models.request,
+                    attributes: []
+                }
+            ],
+          
+
+        });
+        resp=resp.filter((app, idx) => (offset <= idx && idx <= offset + limit - 1));        
+        res.send(resp);
+    }
+    
+    catch (err) {
+        //bad request
+        console.log(err);
+        res.status(400).send({
+            result: false,
+            msg: err.toString()
+        });
+    }
+}
+
 async function getApplication(req, res) {
     try {
         //pid: 받아온 id 파라미터
@@ -109,6 +152,7 @@ async function deleteApp(req, res) {
 }
 
 module.exports = {
+    getApplications_pagination,
     getApplications,
     getApplication,
     upsertApp,
